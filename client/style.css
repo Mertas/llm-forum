@@ -1,0 +1,80 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: #0e0f13; color: #e8eaf0; min-height: 100vh; }
+header { position: sticky; top: 0; background: rgba(14,15,19,.92); backdrop-filter: blur(8px); padding: 12px 18px; border-bottom: 1px solid #262a35; z-index: 10; }
+h1 { font-size: 17px; margin: 0 0 10px; }
+.controls { display: flex; gap: 8px; flex-wrap: wrap; }
+#topic { flex: 1; min-width: 220px; padding: 9px 12px; border-radius: 10px; border: 1px solid #2c3140; background: #161922; color: #e8eaf0; font-size: 13.5px; }
+#topic:focus { outline: none; border-color: #4c6ef5; }
+.paid-toggle { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; border-radius: 10px; border: 1px solid #2c3140; background: #161922; font-size: 12px; color: #9aa3b5; cursor: pointer; }
+.paid-toggle input { accent-color: #ffd43b; }
+button { padding: 9px 14px; border-radius: 10px; border: 1px solid #2c3140; background: #161922; color: #e8eaf0; cursor: pointer; font-size: 13px; }
+button:hover { border-color: #4c6ef5; }
+button.primary { background: #4c6ef5; border-color: #4c6ef5; color: #fff; font-weight: 600; }
+button:disabled { opacity: .45; cursor: default; }
+#btn-random { font-size: 15px; padding: 9px 12px; }
+.status { padding: 8px 18px; font-size: 12.5px; color: #9aa3b5; border-bottom: 1px solid #1c1f29; }
+.status.thinking { color: #ffd43b; }
+.status.error { color: #ff6b6b; }
+#models-bar { display: flex; gap: 6px; padding: 8px 18px; flex-wrap: wrap; border-bottom: 1px solid #1c1f29; }
+.chip { font-size: 10.5px; padding: 3px 9px; border-radius: 12px; background: #161922; border: 1px solid #2c3140; color: #9aa3b5; }
+.chip.speaking { border-color: #ffd43b; color: #ffd43b; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: .55; } }
+.tree { padding: 18px; max-width: 1100px; margin: 0 auto; }
+.node { margin: 8px 0; padding: 10px 14px; border-radius: 12px; border: 1px solid #262a35; background: #14161d; position: relative; animation: fadeIn .35s ease; }
+.node.new { border-color: #ffd43b; box-shadow: 0 0 0 2px rgba(255,212,59,.25); }
+.node.consensus { border-color: #51cf66; background: #142018; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.node .meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; }
+.node .meta .p-model { font-size: 9.5px; color: #4d5566; }
+.node .meta .time { margin-left: auto; color: #6b7280; font-size: 11px; }
+.node .badge { padding: 2px 9px; border-radius: 10px; font-weight: 600; font-size: 10.5px; color: #0e0f13; }
+.node .time { color: #6b7280; }
+.node .body { font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; }
+.node .consensus-tag { background: #51cf66; color: #0e0f13; padding: 2px 8px; border-radius: 8px; font-size: 10px; font-weight: 700; }
+.children { margin-left: 26px; border-left: 1px dashed #2c3140; padding-left: 12px; }
+.summary { max-width: 1100px; margin: 0 auto 30px; padding: 14px 18px; border-radius: 12px; background: #142018; border: 1px solid #2f9e44; font-size: 14px; line-height: 1.55; }
+.hidden { display: none; }
+.empty-hint { color: #6b7280; text-align: center; padding: 60px 20px; font-size: 14px; }
+/* Главная: комнаты */
+main { max-width: 900px; margin: 0 auto; padding: 20px 18px; }
+.sub { margin: 0 0 16px; color: #9aa3b5; font-size: 13px; }
+.create-card { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding: 14px; border: 1px solid #262a35; border-radius: 14px; background: #14161d; margin-bottom: 18px; }
+.rooms { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.room-card { display: block; padding: 14px 16px; border: 1px solid #262a35; border-radius: 14px; background: #14161d; text-decoration: none; color: inherit; transition: border-color .2s; }
+.room-card:hover { border-color: #4c6ef5; }
+.room-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.room-topic { font-weight: 600; font-size: 14px; line-height: 1.35; }
+.live { color: #ff6b6b; font-size: 11px; flex: none; }
+.idle { color: #6b7280; font-size: 11px; flex: none; }
+.room-meta { color: #6b7280; font-size: 11.5px; }
+.head-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+h1 a { color: inherit; text-decoration: none; }
+/* Панель статистики по моделям */
+.stats-panel { max-width: 1100px; margin: 10px auto 0; padding: 10px 14px; border: 1px solid #2c3140; border-radius: 12px; background: #14161d; }
+.stats-head { font-size: 12px; color: #9aa3b5; margin-bottom: 8px; }
+.stats-row { display: grid; grid-template-columns: 1fr 150px 60px 90px; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 8px; font-size: 12px; }
+.stats-row:nth-child(odd) { background: #181b24; }
+.stats-row .s-model { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.stats-row .s-state { font-size: 11.5px; }
+.s-state.thinking { color: #ffd43b; }
+.s-state.waiting { color: #6b7280; }
+.s-state.error { color: #ff6b6b; }
+.s-state.idle { color: #4d5566; }
+.stats-row .s-num { text-align: right; color: #9aa3b5; }
+/* Панель озвучки */
+.tts-bar { max-width: 1100px; margin: 10px auto 0; padding: 10px 14px; border: 1px solid #2c3140; border-radius: 12px; background: #14161d; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; font-size: 12px; color: #9aa3b5; }
+.tts-title { font-weight: 600; color: #e8eaf0; }
+.tts-opt { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.tts-opt select { background: #161922; color: #e8eaf0; border: 1px solid #2c3140; border-radius: 8px; padding: 4px 6px; }
+.tts-hint { color: #4d5566; }
+.node-play { float: right; background: none; border: 1px solid #2c3140; border-radius: 8px; padding: 2px 8px; font-size: 11px; color: #6b7280; cursor: pointer; }
+.node-play.ready { color: #ffd43b; border-color: #4c6ef5; }
+.node-play.ready:hover { background: #1c2030; }
+/* Окошко «сейчас проигрывается» (fixed, левый верхний угол) */
+.now-playing { position: fixed; top: 12px; left: 12px; z-index: 100; max-width: 340px; background: rgba(20,22,29,.96); border: 1px solid #4c6ef5; border-radius: 10px; padding: 8px 12px; font-size: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+.now-playing .np-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; color: #9aa3b5; font-size: 11px; }
+.now-playing .np-who { color: #6b7280; font-size: 10.5px; margin-bottom: 5px; }
+.now-playing .np-text { color: #e8eaf0; line-height: 1.45; max-height: 240px; overflow-y: auto; font-size: 12.5px; }
+.now-playing .np-nav { display: flex; gap: 6px; margin-top: 8px; }
+.now-playing .np-nav button { background: #1c2030; border: 1px solid #2c3140; border-radius: 8px; padding: 4px 10px; font-size: 11px; color: #e8eaf0; cursor: pointer; }
+.now-playing .np-nav button:hover { border-color: #4c6ef5; }

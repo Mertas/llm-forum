@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Forum — комната</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="head-row">
+    <h1>🧠 <a href="/">LLM Forum</a></h1>
+    <div class="controls">
+      <button id="btn-tts" title="Настройки озвучки">🔊</button>
+      <button id="btn-stats" title="Статистика по моделям">📊</button>
+      <button id="btn-start" class="primary">▶ Продолжить обсуждение</button>
+      <button id="btn-stop" disabled>⏹ Стоп</button>
+    </div>
+  </div>
+</header>
+<div id="tts-bar" class="tts-bar hidden">
+  <span class="tts-title">🔊 Серверная озвучка (нейроголоса)</span>
+  <label class="tts-opt"><input type="checkbox" id="tts-auto" checked> говорить по мере ответов</label>
+  <label class="tts-opt">скорость
+    <select id="tts-rate">
+      <option value="0.75">0.75×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.25">1.25×</option>
+    </select>
+  </label>
+  <label class="tts-opt">громкость
+    <select id="tts-vol">
+      <option value="0.4">тихо</option>
+      <option value="0.8" selected>средне</option>
+      <option value="1">громко</option>
+    </select>
+  </label>
+  <label class="tts-opt">голосовой движок
+    <select id="tts-engine">
+      <option value="edge">Edge Neural (облако)</option>
+      <option value="silero">Silero v5 (локальный, лучший)</option>
+      <option value="piper">Piper (локальный, лёгкий)</option>
+    </select>
+  </label>
+  <span class="tts-hint">Silero — 5 русских голосов (Xenia, Kseniya, Baya, Aidar, Eugene); Edge — Svetlana/Dmitry</span>
+</div>
+<div id="now-playing" class="now-playing hidden"></div>
+<div id="stats-panel" class="stats-panel hidden">
+  <div class="stats-head">📊 Модели: <span id="stats-summary"></span></div>
+  <div id="stats-body"></div>
+</div>
+<div id="status" class="status">Загрузка комнаты…</div>
+<div id="models-bar"></div>
+<div id="tree" class="tree"><div class="empty-hint">Загрузка…</div></div>
+<div id="summary" class="summary hidden"></div>
+<script src="/room.js"></script>
+</body>
+</html>
